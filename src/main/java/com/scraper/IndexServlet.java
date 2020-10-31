@@ -9,26 +9,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet (
-    name = "livechartscraper",
-    urlPatterns = "/SearchGenre"
+    name = "livechartindex",
+    urlPatterns = "/"
 )
-public class ScraperServlet extends HttpServlet {
+public class IndexServlet extends HttpServlet {
 
     private ScraperService scraper;
 
     public void init() throws ServletException {
-        System.out.println("Initializing ScraperServlet");
-        scraper = ScraperService.getInstance();
-        scraper.scrape();
+        System.out.println("Initializing IndexServlet");
+        // scraper = ScraperService.getInstance();
+        // scraper.scrape();
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         try {
             //scraper.getLiveChartResults(req.getParameter("genre"));
-            System.out.println(scraper.getPage());
-            RequestDispatcher dispatcher = req.getRequestDispatcher("scrapeResults.jsp");
+            // System.out.println(scraper.getPage());
+            RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
 
             dispatcher.forward(req, res);
         } catch (Exception e) {
